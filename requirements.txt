@@ -14,4 +14,6 @@ py-cpuinfo==9.0.0
 huggingface-hub==0.23.2
 safetensors==0.4.3
 #motmetrics
-#easydict
+easyorc
+Flask-SocketIO
+numpy<1.24

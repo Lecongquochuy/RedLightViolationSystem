@@ -70,19 +70,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-#
-# # Đọc ảnh
-# image = cv2.imread('image.jpg')
-#
-# # Chuyển đổi ảnh sang không gian màu YUV
-# yuv_image = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
-#
-# # Áp dụng CLAHE lên kênh độ sáng
-# clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-# yuv_image[:, :, 0] = clahe.apply(yuv_image[:, :, 0])
-#
-# # Chuyển lại sang BGR
-# result = cv2.cvtColor(yuv_image, cv2.COLOR_YUV2BGR)
-#
-# # Lưu ảnh
-# cv2.imwrite('result.jpg', result)
+

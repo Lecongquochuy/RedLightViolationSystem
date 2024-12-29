@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Object Detection with YOLO</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="nav">
+        <h1>Upload Video</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="video" accept="video/*" required>
+            <button type="submit">Upload Video</button>
+        </form>
+    </div>
+
+    <div class="content">
+        {% if video_uploaded %}
+            <h2>Video Frames:</h2>
+            <img src="/video-feed" alt="Video Frames" style="width: 1024px; height: 800px;">
+        {% endif %}
+    </div>
+
+</body>
+</html>
+
