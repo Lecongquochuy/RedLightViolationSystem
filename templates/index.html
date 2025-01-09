@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Object Detection with YOLO</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        async function fetchPlateText() {
+            const response = await fetch('/get-plate-text');
+            const plateText = await response.text();
+            document.getElementById('license-plate-text').innerText = plateText;
+        }
+
+        function updatePlateText() {
+            const inputText = document.getElementById('plate-text-input').value;
+            document.getElementById('license-plate-text').innerText = inputText;
+        }
+
+        function setFiveDaysAgo() {
+            const dateElement = document.getElementById('five-days-ago');
+            const today = new Date();
+            const fiveDaysAgo = new Date(today.setDate(today.getDate() - 5));
+            dateElement.innerText = fiveDaysAgo.toISOString();
+        }
+
+        setInterval(fetchPlateText, 2000); // Update plate text every 2 seconds
+        window.onload = setFiveDaysAgo; // Set date on page load
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <h1>Upload Video</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="video" accept="video/*" required>
+            <button type="submit">Upload Video</button>
+        </form>
+    </div>
+
+    <div class="content" style="display: flex; align-items: flex-start; gap: 20px;">
+    {% if video_uploaded %}
+        <!-- Video Frames Section -->
+        <div class="video-section">
+            <h2>Video Frames:</h2>
+            <img src="/video-feed" alt="Video Frames" style="width: 900px; height: 800px;">
+        </div>
+
+        <!-- License Plate Section -->
+        <div class="license-plate-section">
+            <h2>License Plate:</h2>
+            <img id="license-plate-image" src="static/license_plate.jpg" alt="License Plate" style="width: 300px; height: 150px; margin-bottom: 10px;">
+            <p id="license-plate-text" style="font-size: 20px; text-align: center;">Detecting...</p>
+            <p id="five-days-ago" style="font-size: 16px; text-align: center; margin-top: 10px;"></p>
+            <input id="plate-text-input" type="text" placeholder="Enter license plate text" style="margin-top: 10px;" />
+            <button onclick="updatePlateText()">Update</button>
+        </div>
+    {% endif %}
+    </div>
+</body>
+</html>
